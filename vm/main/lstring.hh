@@ -91,8 +91,7 @@ namespace mutinternal {
     static std::basic_ostream<C>& write(std::basic_ostream<C>& out,
                                         const BaseLString<C>& input) {
       if (input.isError())
-        // return out << "(error " << (nativeint) input.error << ")";
-        return out;
+        return out << "(error " << (nativeint) input.error << ")";
       else
         return out.write(input.string, input.length);
     }

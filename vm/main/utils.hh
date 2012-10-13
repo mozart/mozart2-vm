@@ -165,11 +165,9 @@ namespace internal {
   template <>
   struct VSToStringHelper<nchar> {
     static std::basic_string<nchar> call(VM vm, RichNode vs) {
-      std::basic_string<nchar> x;
-      return x;
-      // std::basic_stringstream<nchar> buffer;
-      // VirtualString(vs).toString(vm, buffer);
-      // return buffer.str();
+      std::basic_stringstream<nchar> buffer;
+      VirtualString(vs).toString(vm, buffer);
+      return buffer.str();
     }
   };
 

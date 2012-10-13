@@ -58,10 +58,9 @@ public:
     ToString() : Builtin("toString") {}
 
     void operator()(VM vm, In value, Out result) {
-      // std::basic_ostringstream<nchar> stringStream;
-      // VirtualString(value).toString(vm, stringStream);
-      std::basic_string<nchar> x;
-      result = String::build(vm, newLString(vm, x));
+      std::basic_ostringstream<nchar> stringStream;
+      VirtualString(value).toString(vm, stringStream);
+      result = String::build(vm, newLString(vm, stringStream.str()));
     }
   };
 
@@ -79,27 +78,27 @@ public:
     ToFloat() : Builtin("toFloat") {}
 
     void operator()(VM vm, In value, Out result) {
-      // std::basic_ostringstream<nchar> stringStream;
-      // VirtualString(value).toString(vm, stringStream);
+      std::basic_ostringstream<nchar> stringStream;
+      VirtualString(value).toString(vm, stringStream);
 
-      // auto bufferStr = stringStream.str();
-      // auto nstr = makeLString(bufferStr.c_str(), bufferStr.size());
-      // auto utf8str = toUTF<char>(nstr);
-      // std::stringstream strStream;
-      // strStream << utf8str;
+      auto bufferStr = stringStream.str();
+      auto nstr = makeLString(bufferStr.c_str(), bufferStr.size());
+      auto utf8str = toUTF<char>(nstr);
+      std::stringstream strStream;
+      strStream << utf8str;
 
-      // auto str = strStream.str();
+      auto str = strStream.str();
 
-      // for (auto iter = str.begin(); iter != str.end(); ++iter)
-      //   if (*iter == '~')
-      //     *iter = '-';
+      for (auto iter = str.begin(); iter != str.end(); ++iter)
+        if (*iter == '~')
+          *iter = '-';
 
-      // char* end = nullptr;
+      char* end = nullptr;
       double doubleResult = 0.0;
-      // doubleResult = std::strtod(str.c_str(), &end);
+      doubleResult = std::strtod(str.c_str(), &end);
 
-      // if (*end != '\0')
-      //   raiseKernelError(vm, MOZART_STR("stringNoFloat"), value);
+      if (*end != '\0')
+        raiseKernelError(vm, MOZART_STR("stringNoFloat"), value);
 
       result = build(vm, doubleResult);
     }
