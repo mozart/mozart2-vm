@@ -106,9 +106,11 @@ public:
       if (!VirtualString(string).isVirtualString(vm))
         raiseTypeError(vm, MOZART_STR("VirtualString"), string);
 
-      std::basic_ostringstream<nchar> combinedStringStream;
-      VirtualString(string).toString(vm, combinedStringStream);
-      auto combinedString = combinedStringStream.str();
+      // std::basic_ostringstream<nchar> combinedStringStream;
+      // VirtualString(string).toString(vm, combinedStringStream);
+      // auto combinedString = combinedStringStream.str();
+      std::basic_string<nchar> combinedString;
+
       auto rawString = makeLString(combinedString.data(),
                                    combinedString.size());
 
