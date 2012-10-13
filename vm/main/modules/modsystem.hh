@@ -82,9 +82,10 @@ public:
       auto boolToStdErr = getArgument<bool>(vm, toStdErr, MOZART_STR("Boolean"));
       auto boolNewLine = getArgument<bool>(vm, newLine, MOZART_STR("Boolean"));
 
-      std::basic_stringstream<nchar> buffer;
-      VirtualString(value).toString(vm, buffer);
-      auto bufferStr = buffer.str();
+      // std::basic_stringstream<nchar> buffer;
+      // VirtualString(value).toString(vm, buffer);
+      // auto bufferStr = buffer.str();
+      std::basic_string<nchar> bufferStr;
 
       auto& stream = boolToStdErr ? std::cerr : std::cout;
       stream << toUTF<char>(makeLString(bufferStr.c_str(), bufferStr.size()));
