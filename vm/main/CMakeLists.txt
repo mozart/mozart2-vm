@@ -1,7 +1,6 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  message(STATUS "Using MAC OS")
   set(MOZART_GENERATOR_FLAGS "-I/usr/lib/c++/v1")
 endif()
 

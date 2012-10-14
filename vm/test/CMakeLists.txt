@@ -8,7 +8,6 @@ if(MINGW)
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  message(STATUS "Us ing MAC OS")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
   #include_directories(/usr/lib/c++/v1)
 endif()

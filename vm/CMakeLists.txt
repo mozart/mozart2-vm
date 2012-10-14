@@ -1,5 +1,4 @@
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  message(STATUS "Using MAC OS")
   set(GTEST_CMAKE_EXTRA_ARGS "-DCMAKE_CXX_FLAGS=-stdlib=libc++")
 endif()
 
