@@ -7,7 +7,8 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 if(MINGW)
   # Work around a bug in MinGW
-  string(REGEX REPLACE "(^| )-std=c\\+\\+0x($| )" " -std=gnu++0x " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+  string(REGEX REPLACE "(^| )-std=c\\+\\+0x($| )" " -std=gnu++0x "
+         CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
   set(CXX_STD_OPT -std=gnu++0x)
 else()
   set(CXX_STD_OPT -std=c++0x)

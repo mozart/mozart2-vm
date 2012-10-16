@@ -2,8 +2,6 @@ if("${LLVM_SRC_DIR}" STREQUAL "${DEFAULT_LLVM_SRC_DIR}" AND
    NOT EXISTS "${LLVM_BUILD_DIR}/bin/clang++")
 
   if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    # This opetion is very important, otherwise clang will be linked against
-    # the wrong standard library and will cause troubles.
     set(LLVM_CMAKE_EXTRA_ARGS "-DCMAKE_CXX_FLAGS=-stdlib=libc++")
   endif()
 

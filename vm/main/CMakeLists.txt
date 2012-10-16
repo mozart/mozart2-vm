@@ -1,7 +1,8 @@
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
+0include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(MOZART_GENERATOR_FLAGS "-I/usr/lib/c++/v1")
+  include_directories(/usr/lib/c++/v1)
 endif()
 
 add_custom_command(
