@@ -1,8 +1,8 @@
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  message(STATUS "Using MAC OS")
   set(MOZART_GENERATOR_FLAGS "-I/usr/lib/c++/v1")
+  include_directories(/usr/lib/c++/v1)
 endif()
 
 add_custom_command(
@@ -52,7 +52,6 @@ add_custom_target(genbuiltins
   DEPENDS coremodules.genbi
   VERBATIM)
 
-include_directories(/usr/lib/c++/v1)
 add_library(mozartvm emulate.cc memmanager.cc gcollect.cc
   unify.cc sclone.cc vm.cc coredatatypes.cc coders.cc properties.cc
   coremodules.cc)
