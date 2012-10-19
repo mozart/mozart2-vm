@@ -115,7 +115,7 @@ UnstableNode ByteString::stringSlice(Self self, VM vm,
 void ByteString::stringSearch(
   Self self, VM vm, RichNode from, RichNode needleNode,
   UnstableNode& begin, UnstableNode& end) {
-
+/*
   using namespace patternmatching;
 
   auto fromOffset = getArgument<nativeint>(vm, from, MOZART_STR("integer"));
@@ -160,6 +160,7 @@ void ByteString::stringSearch(
     }
 
   }
+  */
 }
 
 bool ByteString::stringHasPrefix(Self self, VM vm, RichNode prefixNode) {
