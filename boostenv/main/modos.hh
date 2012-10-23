@@ -158,10 +158,7 @@ public:
       auto nativeStr = boost::filesystem::current_path().native();
       auto nresult = toUTF<nchar>(makeLString(nativeStr.c_str(),
                                               nativeStr.size()));
-      if (nresult.isError()) {
-        raiseSystem(vm,MOZART_STR("os"),
-                    MOZART_STR("Unable to determine current working directory"));
-      }
+
       result = Atom::build(vm, nresult.length, nresult.string);
     }
   };
