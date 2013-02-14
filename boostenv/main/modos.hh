@@ -32,6 +32,7 @@
 #include "boostenvpipe-decl.hh"
 
 #include <iostream>
+#include <fstream>
 
 #include <boost/filesystem.hpp>
 
@@ -68,6 +69,7 @@ public:
     BootURLLoad(): Builtin("bootURLLoad") {}
 
     static void call(VM vm, In url, Out result) {
+      namespace fs = boost::filesystem;
       size_t urlBufSize = ozVSLengthForBuffer(vm, url);
 
       bool ok;
@@ -75,8 +77,13 @@ public:
         std::string urlString;
         ozVSGet(vm, url, urlBufSize, urlString);
 
-        auto& bootLoader = BoostBasedVM::forVM(vm).getBootLoader();
-        ok = bootLoader && bootLoader(vm, urlString, result);
+        fs::path urlFile(urlString);
+        if (!fs::exists(urlFile)) {
+          ok = false;
+        } else {
+          auto& bootLoader = BoostBasedVM::forVM(vm).getBootLoader();
+          ok = bootLoader && bootLoader(vm, urlString, result);  
+        }
       }
 
       if (!ok) {
